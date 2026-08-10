@@ -1,9 +1,13 @@
 .venv/
+venv/
 __pycache__/
 *.pyc
+
 .env
+
+database/*.db
+
+data/audio/
 database/chroma/
-*.db
-*.sqlite3
-.vscode/
-.streamlit/
+
+uploads/
