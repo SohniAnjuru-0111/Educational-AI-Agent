@@ -9,18 +9,29 @@ class TTSService:
         if not text or not text.strip():
             return None
 
-        os.makedirs(
-            "data/audio",
-            exist_ok=True
-        )
+        try:
 
-        audio_path = "data/audio/answer.mp3"
+            os.makedirs(
+                "data/audio",
+                exist_ok=True
+            )
 
-        tts = gTTS(
-            text=text,
-            lang="en"
-        )
+            audio_path = "data/audio/answer.mp3"
 
-        tts.save(audio_path)
+            tts = gTTS(
+                text=text,
+                lang="en"
+            )
 
-        return audio_path
+            tts.save(audio_path)
+
+            if os.path.exists(audio_path):
+                return audio_path
+
+            return None
+
+        except Exception as e:
+
+            print("TTS error:", e)
+
+            return None
